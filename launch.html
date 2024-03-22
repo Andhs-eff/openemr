@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src='dist/fhir-client.js'>
+    </script>
+</head>
+
+<body>
+    <p>Waiting for authorization...</p>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const iss = urlParams.get('iss');
+            const launch = urlParams.get('launch');
+            if (iss && launch) {
+                FHIR.oauth2.authorize({
+                    'client_id': 'kyCp5aQQ1180mKXV7_v9FdzAHWESRvy9aN9R5whfgYk',
+                    'scope': 'openid fhirUser online_access offline_access launch launch/patient api:oemr api:fhir api:port profile name address given_name family_name nickname phone phone_verified email email_verified site:default patient/AllergyIntolerance.read patient/Appointment.read patient/Binary.read patient/CarePlan.read patient/CareTeam.read patient/Condition.read patient/Coverage.read patient/Device.read patient/DiagnosticReport.read patient/DocumentReference.$docref patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/Location.read patient/Medication.read patient/MedicationRequest.read patient/Observation.read patient/Organization.read patient/Patient.read patient/Person.read patient/Practitioner.read patient/Procedure.read patient/Provenance.read user/AllergyIntolerance.read user/Appointment.read user/Binary.read user/CarePlan.read user/CareTeam.read user/Condition.read user/Coverage.read user/Device.read user/DiagnosticReport.read user/DocumentReference.$docref user/DocumentReference.read user/Encounter.read user/Goal.read user/Immunization.read user/Location.read user/Medication.read user/MedicationRequest.read user/Observation.read user/Organization.read user/Organization.write user/Patient.read user/Patient.write user/Person.read user/Practitioner.read user/Practitioner.write user/PractitionerRole.read user/Procedure.read user/Provenance.read',
+                    'iss': iss,
+                    'launch': launch,
+                    'redirect_uri': 'https://andhs-eff.github.io/openemr/app.html'
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
