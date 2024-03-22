@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Launch URL</title>
+</head>
+
+<body>
+
+    <form id="launchUrlForm">
+        <label for="launchUrl">Paste Launch URL:</label><br>
+        <textarea id="launchUrl" name="launchUrl" rows="10" cols="50" required></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const iss = urlParams.get('iss');
+            const launch = urlParams.get('launch');
+            if (iss && launch) {
+                document.getElementById('launchUrl').value = window.location.href;
+            }
+        });
+        document.getElementById('launchUrlForm').onsubmit = function (event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            const launchUrl = document.getElementById('launchUrl').value;
+            const urlParams = new URLSearchParams(new URL(launchUrl).search);
+            const iss = urlParams.get('iss');
+            const launch = urlParams.get('launch');
+            if (iss && launch) {
+                // Redirect to another static page with 'iss' and 'launch' as URL parameters
+                window.location.href = `launch.html?iss=${encodeURIComponent(iss)}&launch=${encodeURIComponent(launch)}`;
+            } else {
+                alert('Invalid URL. Please ensure it contains "iss" and "launch" parameters.');
+            }
+        };
+    </script>
+
+</body>
+
+</html>
