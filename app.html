@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script src='dist/fhir-client.js'></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <style>
+        p {
+            background: lightgray;
+            margin: 1em;
+            padding: 1em;
+            font-size: x-large;
+        }
+        #write {
+            background: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <p id="write"></p>
+    </div>
+
+    <script>
+        FHIR.oauth2.ready()
+            .then(function (client) {
+                doWrite1()
+            });
+
+
+        async function doWrite1() {
+            $('#write').text("Hello Yura!");
+        }
+    </script>
+
+</body>
+
+</html>
