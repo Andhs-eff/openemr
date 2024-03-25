@@ -3,7 +3,9 @@
 
 <head>
 
-    <script src='dist/fhir-client-v2.js'></script>
+    <!-- <script src='dist/fhir-client.js'></script> -->
+    <script src='dist/fhir-client-v0.1.12.js'></script>
+    <script src='dist/fhir-client-cerner-additions-1.0.0.js'></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <style>
@@ -13,6 +15,7 @@
             padding: 1em;
             font-size: x-large;
         }
+
         #write {
             background: lightgreen;
         }
@@ -26,11 +29,15 @@
     </div>
 
     <script>
-        FHIR.oauth2.ready()
-            .then(function (client) {
-                doWrite1()
-            });
+        function onError() {
+            console.log('Error', arguments);
+        }
 
+        function onReady(client) {
+            doWrite1()
+        }
+
+        FHIR.oauth2.ready(onReady, onError);
 
         async function doWrite1() {
             $('#write').text("Hello Yura!");
