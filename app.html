@@ -41,7 +41,7 @@
 
         async function doRequests() {
 
-            var obs2 = await fetch("https://demo.openemr.io/a/openemr/apis/default/api/patient", {
+            var obs2 = await fetch(myApp.smart.state.serverUrl + "/patient", {
                 headers: {
                     "Accept": "application/json+fhir",
                     "Authorization": "Bearer " + myApp.smart.state.tokenResponse.access_token
