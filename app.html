@@ -40,8 +40,9 @@
             });
 
         async function doRequests() {
+            console.log("0", myApp.smart.state);
 
-            var obs2 = await fetch(myApp.smart.state.serverUrl + "/patient", {
+            var obs2 = await fetch("https://emr.effectiff.net/apis/default/api/patient", {
                 headers: {
                     "Accept": "application/json+fhir",
                     "Authorization": "Bearer " + myApp.smart.state.tokenResponse.access_token
