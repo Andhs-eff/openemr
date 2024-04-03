@@ -40,9 +40,9 @@
             });
 
         async function doRequests() {
-            console.log("0", myApp.smart.state);
+            //console.log("0", myApp.smart.state);
 
-            var obs2 = await fetch("https://emr.effectiff.net/apis/default/api/patient", {
+            var obs2 = await fetch("https://emr.effectiff.net/apis/default/api/patient/9b6fc285-a5f4-49d1-8cc2-136d652b4911", {
                 headers: {
                     "Accept": "application/json+fhir",
                     "Authorization": "Bearer " + myApp.smart.state.tokenResponse.access_token
@@ -52,18 +52,36 @@
             })
 
             var response = await obs2.json()
-            console.log("1", response)
+            //console.log("1", response)
 
-            /*const sample = [{ "Name": response.name[0].text }, { "Gender": response.gender }, { "Birth date": response.birthDate }, { "Preferred language": response.communication[0].language.text }]
+            const sample = [{ "Name": response.fname }, { "Gender": response.sex }, { "Birth date": response.DOB }, { "Preferred language": response.language }]
 
             myApp.vue = new Vue({
                 el: "#main",
                 data: sample
-            });*/
+            });
         }
 
         async function doWrite1() {
-            $('#write').text("Hello Yura!");
+
+            const raw = "{\"note\": \"Call data is here\"}";
+
+            var obs4 = await fetch("https://emr.effectiff.net/apis/default/api/patient/1/encounter/8/vital", {
+                method: 'POST',
+                body: raw,
+                headers: {
+                    "Accept": "application/json+fhir",
+                    "Authorization": "Bearer " + myApp.smart.state.tokenResponse.access_token,
+                    'Content-Type': "text/plain"
+                }
+            }).then(function (data) {
+                return data
+            })
+            console.log("4", obs4);
+            //var response = await obs4.json();
+            //console.log("4", response);
+
+            $('#write').text("Call data written to Vitals - Note successfully");
         }
     </script>
 
