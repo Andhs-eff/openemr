@@ -54,7 +54,7 @@
             var response = await obs2.json()
             //console.log("1", response)
 
-            const sample = [{ "Name": response.fname }, { "Gender": response.sex }, { "Birth date": response.DOB }, { "Preferred language": response.language }]
+            const sample = [{ "Name": response.data.fname }, { "Gender": response.data.sex }, { "Birth date": response.data.DOB }, { "Preferred language": response.data.language }]
 
             myApp.vue = new Vue({
                 el: "#main",
