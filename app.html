@@ -64,7 +64,7 @@
 
         async function doWrite1() {
 
-            const raw = "{\"note\": \"Call data is here\"}";
+            const raw = "{\"note\": \"Cloud Interpreter data is here\"}";
 
             var obs4 = await fetch("https://emr.effectiff.net/apis/default/api/patient/1/encounter/8/vital", {
                 method: 'POST',
@@ -81,7 +81,7 @@
             //var response = await obs4.json();
             //console.log("4", response);
 
-            $('#write').text("Call data written to Vitals - Note successfully");
+            $('#write').text("Cloud Interpreter data written to Vitals - Note successfully");
         }
     </script>
 
